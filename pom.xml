@@ -68,6 +68,16 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope> <!-- define que a dependencia sera usada apenas em tempo de execucao -->
 		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
