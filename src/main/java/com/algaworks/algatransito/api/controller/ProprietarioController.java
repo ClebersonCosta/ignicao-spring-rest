@@ -18,4 +18,5 @@ public class ProprietarioController {
     public List<Proprietario> listar() {
         return repository.findAll();
     }
+    
 }
