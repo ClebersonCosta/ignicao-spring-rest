@@ -41,7 +41,6 @@ public class ProprietarioController {
             return ResponseEntity.notFound().build();
         }
 
-        p.setId(id);
         return ResponseEntity.ok(repository.save(p));
     }
 
