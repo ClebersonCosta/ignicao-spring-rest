@@ -18,7 +18,7 @@ public class ProprietarioController {
 
     private final ProprietarioRepository repository;
 
-    @GetMapping("/")
+    @GetMapping
     public List<Proprietario> listarTodos() {
         return repository.findAll();
     }
