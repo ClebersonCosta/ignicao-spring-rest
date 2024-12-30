@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.domain.service;
 
+import com.algaworks.algatransito.domain.exception.ProprietarioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
@@ -13,8 +14,15 @@ public class ProprietarioService {
     public final ProprietarioRepository repository;
 
     @Transactional
-    public Proprietario salvar(Proprietario p) {
-        return repository.save(p);
+    public Proprietario salvar(Proprietario proprietario) {
+        boolean emailCadastrado = repository.findByEmail(proprietario.getEmail())
+                .filter(p -> !p.equals(proprietario))
+                .isPresent();
+
+        if (emailCadastrado) {
+            throw new ProprietarioException("Email já cadastrado");
+        }
+        return repository.save(proprietario);
     }
 
     @Transactional
