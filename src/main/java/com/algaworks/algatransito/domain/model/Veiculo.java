@@ -36,15 +36,12 @@ public class Veiculo {
     @Size(max = 7)
     private String placa;
 
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
 
-    @NotBlank
     @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
 
-    @NotBlank
     @Column(name = "data_apreensao")
     private LocalDateTime dataApreensao;
 
