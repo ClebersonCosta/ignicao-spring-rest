@@ -31,7 +31,7 @@ public class ProprietarioService {
     }
 
     public Proprietario buscar(Long id) {
-        return repository.findById(id)
+        return repository.findById(veiculo.getProprietario().getId())
                 .orElseThrow(() -> new NegocioException("Proprietário inválido"));
     }
 

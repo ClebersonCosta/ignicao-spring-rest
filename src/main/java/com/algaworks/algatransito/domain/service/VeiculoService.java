@@ -1,5 +1,7 @@
 package com.algaworks.algatransito.domain.service;
 
+import com.algaworks.algatransito.domain.exception.NegocioException;
+import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
@@ -14,9 +16,25 @@ import java.time.LocalDateTime;
 public class VeiculoService {
 
     private final VeiculoRepository repository;
+    private final ProprietarioService service;
 
     @Transactional
     public Veiculo salvar(Veiculo veiculo) {
+        if (veiculo.getId() != null) {
+            throw new NegocioException("Veiculo não pode ter id");
+        }
+
+        boolean placaDuplicada = repository.findByPlaca(veiculo.getPlaca())
+                        .filter(v -> !v.equals(veiculo))
+                        .isPresent();
+
+        if (placaDuplicada) {
+            throw new NegocioException("Placa duplicada");
+        }
+
+        Proprietario p = service.buscar(veiculo.getProprietario().getId());
+        veiculo.setProprietario(p);
+
         veiculo.setStatus(StatusVeiculo.REGULAR);
         veiculo.setDataCadastro(LocalDateTime.now());
 
