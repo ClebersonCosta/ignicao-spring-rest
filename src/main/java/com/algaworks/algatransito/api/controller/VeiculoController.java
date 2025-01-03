@@ -38,9 +38,4 @@ public class VeiculoController {
         return service.salvar(veiculo);
     }
 
-    @ExceptionHandler(NegocioException.class)
-    public ResponseEntity<String> capturar(NegocioException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
 }
