@@ -37,7 +37,7 @@ public class VeiculoController {
                     vm.setPlaca(veiculo.getPlaca());
                     vm.setStatus(veiculo.getStatus());
                     vm.setDataCadastro(veiculo.getDataCadastro());
-//                    vm.setDataApreensao(veiculo.getDataApreensao());
+                    vm.setDataApreensao(veiculo.getDataApreensao());
                     return vm;
                 })
                 .map(ResponseEntity::ok)
