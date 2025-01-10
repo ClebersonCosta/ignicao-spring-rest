@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Getter
@@ -53,10 +53,10 @@ public class Veiculo {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "data_cadastro")
-    private LocalDateTime dataCadastro;
+    private OffsetDateTime dataCadastro;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "data_apreensao")
-    private LocalDateTime dataApreensao;
+    private OffsetDateTime dataApreensao;
 
 }
