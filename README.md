@@ -14,6 +14,7 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
 ### Pre Requisitos
 - Java 17+
 - Maven
+- MySQL
 
 ### Instalação
 
@@ -23,19 +24,27 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
   git clone https://github.com/ClebersonCosta/ignicao-spring-rest.git
 ```
 
-2. Instale as dependências do maven
+2. Configure o login e senha do banco de dados
+
+```bash
+  spring.datasource.url=jdbc:mysql://localhost/algatransito?createDatabaseIfNotExist=true&serverTimezone=UTC
+  spring.datasource.username=root
+  spring.datasource.password={SUA SENHA AQUI}
+```
+
+3. Instale as dependências do maven
 
 ```bash
   mvn install
 ```
 
-3. Gere o JAR do projeto
+4. Gere o JAR do projeto
 
 ```bash
   mvn clean package
 ```
 
-4. Rode o JAR gerado
+5. Rode o JAR gerado
 
 ```bash
   java -jar target/algatransito-api-0.0.1-SNAPSHOT.jar
