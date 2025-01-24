@@ -24,7 +24,7 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
   git clone https://github.com/ClebersonCosta/ignicao-spring-rest.git
 ```
 
-2. Configure o login e senha do banco de dados
+2. Configure sua senha do banco de dados no arquivo 'application.properties'
 
 ```bash
   spring.datasource.url=jdbc:mysql://localhost/algatransito?createDatabaseIfNotExist=true&serverTimezone=UTC
