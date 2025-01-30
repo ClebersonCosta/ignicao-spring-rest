@@ -1,6 +1,5 @@
-package com.algaworks.algatransito.api.model;
+package com.algaworks.algatransito.api.model.output;
 
-import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.model.StatusVeiculo;
 import lombok.Getter;
 import lombok.Setter;
