@@ -1,7 +1,7 @@
 package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.api.assembler.VeiculoAssembler;
-import com.algaworks.algatransito.api.model.output.VeiculoOutput;
+import com.algaworks.algatransito.api.model.output.VeiculoModel;
 import com.algaworks.algatransito.api.model.input.VeiculoInput;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
@@ -24,12 +24,12 @@ public class VeiculoController {
     private final VeiculoAssembler veiculoAssembler;
 
     @GetMapping
-    public List<VeiculoOutput> listarTodos() {
+    public List<VeiculoModel> listarTodos() {
         return veiculoAssembler.toCollectionModel(repository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VeiculoOutput> buscar(@PathVariable Long id) {
+    public ResponseEntity<VeiculoModel> buscar(@PathVariable Long id) {
         return repository.findById(id)
                 .map(veiculoAssembler::toModel)
                 .map(ResponseEntity::ok)
@@ -38,7 +38,7 @@ public class VeiculoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public VeiculoOutput adicionar(@Valid @RequestBody VeiculoInput veiculoInput) {
+    public VeiculoModel adicionar(@Valid @RequestBody VeiculoInput veiculoInput) {
         Veiculo veiculo = veiculoAssembler.toEntity(veiculoInput);
         return veiculoAssembler.toModel(service.salvar(veiculo));
     }
