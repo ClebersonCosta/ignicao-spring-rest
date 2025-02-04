@@ -42,4 +42,9 @@ public class VeiculoService {
         return repository.save(veiculo);
     }
 
+    public Veiculo buscar(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NegocioException("Veiculo inválido"));
+    }
+
 }

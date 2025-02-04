@@ -44,7 +44,6 @@ public class Veiculo {
         autuacao.setVeiculo(this);
         autuacao.setDataOcorrencia(OffsetDateTime.now());
         getAutuacoes().add(autuacao);
-        return autuacao;
     }
 
 }
