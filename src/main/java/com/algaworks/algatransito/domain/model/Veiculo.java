@@ -37,7 +37,7 @@ public class Veiculo {
     @Column(name = "data_apreensao")
     private OffsetDateTime dataApreensao;
 
-    @OneToMany(mappedBy = "veiculo")
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
     private List<Autuacao> autuacoes = new ArrayList<>();
 
     public Autuacao adicionarAutuacao(Autuacao autuacao) {
