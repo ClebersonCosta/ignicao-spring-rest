@@ -47,7 +47,7 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
 5. Rode o JAR gerado
 
 ```bash
-  java -jar target/algatransito-api-0.0.1-SNAPSHOT.jar
+  mvn spring-boot:run
 ```
 
 # API Endpoints
@@ -154,7 +154,7 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
 
 ## GET /veiculos/{id}
 
-**Descrição:** retorno um JSON com os dados do veículo conforme id
+**Descrição:** retorna um JSON com os dados do veículo conforme id
 
 ```json
 {
@@ -166,5 +166,66 @@ Este projeto (AlgaTransito) simula uma aplicação de trânsito para gerenciar a
     "status": "REGULAR",
     "dataCadastro": "2023-05-18T18:00:00Z",
     "dataApreensao": null
+}
+```
+
+## POST /veiculos
+
+**Descrição:** insere um novo veíuclo
+
+```json
+{
+    "proprietario": null,
+    "marca": "Fiat",
+    "modelo": "Touro",
+    "placa": "ABC9F22"
+}
+```
+
+## PUT /veiculos/{id}/apreensao
+
+**Descrição:** atualiza o status de apreenssão do veículo
+
+```bash
+   Retorna STATUS 204 : No Content
+```
+
+## DELETE /veiculos/{id}/apreensao
+
+**Descrição:** remove o status de apreensão do veículo
+
+```bash
+   Retorna STATUS 204 : No Content
+```
+
+## Entidade Autuação
+
+## GET /veiculos/{id}/autuacoes
+
+**Descrição:** retorna um JSON contendo todas as autuções vinculadas ao id do veículo
+
+```json
+{
+  "id": 1,
+  "descricao": "Avançou sinal vermelho",
+  "valorMulta": 450.00,
+  "dataOcorrencia": "2025-02-05T14:19:47Z"
+},
+{
+  "id": 2,
+  "descricao": "Avançou sinal vermelho",
+  "valorMulta": 450.00,
+  "dataOcorrencia": "2025-02-05T16:34:57Z"
+}
+```
+
+## POST /veiculos/{id}/autuacoes
+
+**Descrição:** insere uma autuação ao veículo conforme id
+
+```json
+{
+    "descricao": "Avançou sinal vermelho",
+    "valorMulta": 450
 }
 ```
