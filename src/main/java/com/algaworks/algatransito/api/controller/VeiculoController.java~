@@ -45,13 +45,13 @@ public class VeiculoController {
         return veiculoAssembler.toModel(veiculoService.salvar(veiculo));
     }
 
-    @PutMapping("/{id}/apreensao")
+    @PutMapping("/{id}/apreesao")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void apreender(@PathVariable Long id) {
         apreensaoService.apreender(id);
     }
 
-    @DeleteMapping("/{id}/apreensao")
+    @DeleteMapping("/{id}/apreesao")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removerApreensao(@PathVariable Long id) {
         apreensaoService.removerApreensao(id);

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProprietarioResumoModel {
+public class ProprietarioResumoOutput {
 
     private Long id;
     private String nome;
