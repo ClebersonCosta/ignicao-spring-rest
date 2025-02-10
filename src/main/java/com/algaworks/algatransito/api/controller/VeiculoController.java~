@@ -1,10 +1,11 @@
 package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.api.assembler.VeiculoAssembler;
-import com.algaworks.algatransito.api.model.output.VeiculoModel;
+import com.algaworks.algatransito.api.model.output.VeiculoOutput;
 import com.algaworks.algatransito.api.model.input.VeiculoInput;
 import com.algaworks.algatransito.domain.model.Veiculo;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
+import com.algaworks.algatransito.domain.service.ApreensaoService;
 import com.algaworks.algatransito.domain.service.VeiculoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -19,17 +20,18 @@ import java.util.List;
 @RequestMapping("/veiculos")
 public class VeiculoController {
 
-    private final VeiculoService service;
+    private final VeiculoService veiculoService;
+    private final ApreensaoService apreensaoService;
     private final VeiculoRepository repository;
     private final VeiculoAssembler veiculoAssembler;
 
     @GetMapping
-    public List<VeiculoModel> listarTodos() {
+    public List<VeiculoOutput> listarTodos() {
         return veiculoAssembler.toCollectionModel(repository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VeiculoModel> buscar(@PathVariable Long id) {
+    public ResponseEntity<VeiculoOutput> buscar(@PathVariable Long id) {
         return repository.findById(id)
                 .map(veiculoAssembler::toModel)
                 .map(ResponseEntity::ok)
@@ -38,9 +40,21 @@ public class VeiculoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public VeiculoModel adicionar(@Valid @RequestBody VeiculoInput veiculoInput) {
+    public VeiculoOutput adicionar(@Valid @RequestBody VeiculoInput veiculoInput) {
         Veiculo veiculo = veiculoAssembler.toEntity(veiculoInput);
-        return veiculoAssembler.toModel(service.salvar(veiculo));
+        return veiculoAssembler.toModel(veiculoService.salvar(veiculo));
+    }
+
+    @PutMapping("/{id}/apreesao")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void apreender(@PathVariable Long id) {
+        apreensaoService.apreender(id);
+    }
+
+    @DeleteMapping("/{id}/apreesao")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removerApreensao(@PathVariable Long id) {
+        apreensaoService.removerApreensao(id);
     }
 
 }
